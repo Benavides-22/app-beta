@@ -23,7 +23,18 @@ if (pg_num_rows($result_phone) > 0) {
     exit;
 }
 
+
 $sql = "INSERT INTO users (firstname,lastname,email,mobile_phone,password,password_again) 
 values('$f_name','$l_name','$e_mail','$m_phone','$p_sswd','$enc_pass')";
 //execute query
-pg_query ($sql);
+pg_query("BEGIN");
+
+$result = pg_query($sql);
+
+if ($result) {
+    pg_query("COMMIT");
+    echo "Usuario registrado correctamente";
+} else {
+    pg_query("ROLLBACK");
+    echo "Error en el registro";
+}
