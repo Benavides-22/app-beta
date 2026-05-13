@@ -13,6 +13,7 @@ users u
 ";
 update users set profile_photo= 'profile_photos.png';
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
